@@ -1,0 +1,21 @@
+services:
+  # Web Service - Express Server
+  - type: web
+    name: maron-ai
+    runtime: node
+    plan: free
+    buildCommand: pnpm install && pnpm run build
+    startCommand: pnpm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false  # You'll add this manually in Render dashboard
+    
+    # Health check
+    healthCheckPath: /
+
+# If you want to add a database later:
+# databases:
+#   - name: maron-ai-db
+#     plan: free
